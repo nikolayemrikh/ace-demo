@@ -1,0 +1,30 @@
+.demo {
+  display: flex;
+  height: 500px;
+}
+
+.demo__editor {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.demo__item {
+  position: relative;
+  flex: 1 0 50%;
+}
+
+.demo__preview-frame {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #eeeeee;
+}
+
+.button {
+  font-size: 1em;
+  width: 50%;
+  border-radius: 0;
+  padding: 0.35em 1em;
+}

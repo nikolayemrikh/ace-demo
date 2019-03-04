@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Ace example | Step 4</title>
+    <link rel="stylesheet" href="css/new-style.css">
+  </head>
+  <body>
+    <main class="demo">
+      <div class="demo__item editor-container">
+        <div class="editor-container__editor js-editor-html"></div>
+      </div>
+      <!-- Закомментить предыдущее, раскомментить это (1) -->
+      <!-- <div class="demo__item">
+        <div class="editor-list">
+          <div class="editor-list__item editor-container">
+            <span class="editor-list__item-title">HTML</span>
+            <div class="editor-container__editor js-editor-html"></div>
+          </div>
+          <div class="editor-list__item editor-container">
+            <span class="editor-list__item-title">JS</span>
+            <div class="editor-container__editor js-editor-js"></div>
+          </div>
+        </div>
+      </div> -->
+      <div class="demo__item demo__preview">
+        <iframe class="demo__preview-frame js-frame"></iframe>
+        <!-- Раскомментить это (2) -->
+        <!-- <button class="button js-copy-content">Copy HTML into an iframe</button> -->
+      </div>
+    </main>
+
+    <script src="lib/ace-src/ace.js"></script>
+    <script>
+      const htmlEditor = ace.edit(document.querySelector('.js-editor-html'));
+      htmlEditor.session.setMode("ace/mode/html"); // Режим редактора — HTML
+
+      // Раскомментить это (1)
+      // const jsEditor = ace.edit(document.querySelector('.js-editor-js'));
+      // jsEditor.session.setMode("ace/mode/javascript"); // Режим редактора — javascript
+
+      const frame = document.querySelector('.js-frame');
+      const doc = frame.contentDocument;
+
+      // Раскомментить это (2)
+      // const copyBtn = document.querySelector('.js-copy-content');
+      // copyBtn.addEventListener('click', () => {
+      //   doc.body.innerHTML = htmlEditor.getValue();
+      // });
+      
+      // Раскомментить это (3)
+      // htmlEditor.getSession().on('change', function(/* delta */) {
+      //   doc.body.innerHTML = htmlEditor.getValue();
+      // });
+
+      // Раскомментить это (4)
+      let timeout = null;
+      htmlEditor.getSession().on('change', function(/* delta */) {
+        if (!timeout) {
+          timeout = setTimeout(() => {
+            console.log(123);
+            
+            doc.body.innerHTML = htmlEditor.getValue();
+            timeout = null;
+          }, 1000);
+        }
+      });
+    </script>
+  </body>
+</html>

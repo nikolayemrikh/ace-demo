@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Ace example | Step 2</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <main class="demo">
+      <div class="demo__item">
+        <div class="demo__editor js-editor"></div>
+      </div>
+      <div class="demo__item demo__preview">
+        <iframe class="demo__preview-frame js-frame"></iframe>
+      </div>
+    </main>
+
+    <script src="lib/ace-src/ace.js"></script>
+    <script>
+      const editorEl = document.querySelector('.js-editor');
+      const editor = ace.edit(editorEl);
+
+      editor.session.setMode("ace/mode/html"); // Режим редактора — javascript
+    </script>
+  </body>
+</html>
