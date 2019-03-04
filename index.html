@@ -10,7 +10,7 @@
       <div class="demo__item editor-container">
         <div class="editor-container__editor js-editor-html"></div>
       </div>
-      <!-- Закомментить предыдущее, раскомментить это (1) -->
+      <!-- Закомментить предыдущее, раскомментить это (5) -->
       <!-- <div class="demo__item">
         <div class="editor-list">
           <div class="editor-list__item editor-container">
@@ -54,17 +54,15 @@
       // });
 
       // Раскомментить это (4)
-      let timeout = null;
-      htmlEditor.getSession().on('change', function(/* delta */) {
-        if (!timeout) {
-          timeout = setTimeout(() => {
-            console.log(123);
-            
-            doc.body.innerHTML = htmlEditor.getValue();
-            timeout = null;
-          }, 1000);
-        }
-      });
+      // let interval = null;
+      // htmlEditor.getSession().on('change', function(/* delta */) {
+      //   clearInterval(interval);
+      //   interval = setTimeout(() => {
+      //     doc.body.innerHTML = htmlEditor.getValue();
+      //   }, 1000);
+      // });
+
+      // Раскомментить это (5)
     </script>
   </body>
 </html>
