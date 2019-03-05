@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Демо: передаем данные из ace-редактора в iframe</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <main class="demo">
+      <div class="demo__item">
+        <div class="editor-list">
+          <div class="editor-list__item editor-container">
+            <span class="editor-list__item-title">HTML</span>
+            <div class="editor-container__editor js-editor-html">&lt;h1&gt;Привет&lt;/h1&gt;</div>
+          </div>
+          <div class="editor-list__item editor-container">
+            <span class="editor-list__item-title">JS</span>
+            <div class="editor-container__editor js-editor-js">console.log(window)</div>
+          </div>
+        </div>
+      </div>
+      <div class="demo__item demo__preview">
+        <iframe class="demo__preview-frame js-frame"></iframe>
+      </div>
+    </main>
+
+    <script src="lib/ace-src/ace.js"></script>
+    <script>
+      const htmlEditor = ace.edit(document.querySelector('.js-editor-html'));
+      htmlEditor.session.setMode("ace/mode/html"); // Режим редактора — HTML
+
+      const frame = document.querySelector('.js-frame');
+      const doc = frame.contentDocument;
+
+      const jsEditor = ace.edit(document.querySelector('.js-editor-js'));
+      jsEditor.session.setMode("ace/mode/javascript"); // Режим редактора — javascript
+      let interval = null;
+      function onChange (/* delta */) {
+       clearInterval(interval);
+        interval = setTimeout(() => {
+           doc.body.innerHTML = htmlEditor.getValue();
+          
+           const script = doc.createElement('script');
+           script.innerHTML = jsEditor.getValue();
+           doc.body.appendChild(script);
+         }, 1000);
+       }
+       jsEditor.getSession().on('change', onChange);
+       htmlEditor.getSession().on('change', onChange);
+	   onChange();
+    </script>
+  </body>
+</html>
